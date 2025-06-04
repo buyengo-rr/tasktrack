@@ -54,5 +54,21 @@ def view_task():
         print(f"🕒 Last Updated: {task.updated_at.strftime('%Y-%m-%d %H:%M')}\n")
     else:
         print("❌ Task not found.")
+def complete_task():
+    try:
+        task_id = int(input("✅ Mark complete - Task ID: ").strip())
+    except ValueError:
+        print("❌ Invalid ID format.")
+        return
+    task = session.query(Task).filter_by(id=task_id).first()
+    if task:
+        if task.completed:
+            print("✅ Task is already marked complete.")
+        else:
+            task.completed = True
+            session.commit()
+            print("🎉 Task completed!")
+    else:
+        print("❌ Task not found.")
 
 
