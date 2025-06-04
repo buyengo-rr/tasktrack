@@ -21,4 +21,5 @@ def main():
             view_task()
         elif choice == "4":
             complete_task()
-
+        elif choice == "5":
+            delete_task()
