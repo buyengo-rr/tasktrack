@@ -17,6 +17,7 @@ def main():
             list_tasks()
         elif choice == "2":
             add_task()
-
+        elif choice == "3":
+            view_task()
 
 
