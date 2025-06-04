@@ -37,5 +37,22 @@ def add_task():
     session.add(task)
     session.commit()
     print("🎯 Task added!")
+def view_task():
+    try:
+        task_id = int(input("🔍 Task ID: ").strip())
+    except ValueError:
+        print("❌ Invalid ID format.")
+        return
+    task = session.query(Task).filter_by(id=task_id).first()
+    if task:
+        print(f"\n📌 {task.title}")
+        print(f"🧾 Description: {task.description or 'N/A'}")
+        print(f"📅 Due Date: {task.due_date.strftime('%Y-%m-%d') if task.due_date else 'N/A'}")
+        print(f"⚡ Priority: {task.priority}")
+        print(f"✅ Completed: {'Yes' if task.completed else 'No'}")
+        print(f"🕒 Created At: {task.created_at.strftime('%Y-%m-%d %H:%M')}")
+        print(f"🕒 Last Updated: {task.updated_at.strftime('%Y-%m-%d %H:%M')}\n")
+    else:
+        print("❌ Task not found.")
 
 
