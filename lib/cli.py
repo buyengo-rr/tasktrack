@@ -13,5 +13,8 @@ def main():
         
         choice = input("Choose: ")
 
+        if choice == "1":
+            list_tasks()
+
 
 
