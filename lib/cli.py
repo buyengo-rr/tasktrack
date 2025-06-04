@@ -25,3 +25,6 @@ def main():
             delete_task()
         elif choice == "6":
             upcoming_tasks()
+        elif choice == "0":
+            print("👋 Bye for now!")
+            break
