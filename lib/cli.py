@@ -15,6 +15,8 @@ def main():
 
         if choice == "1":
             list_tasks()
+        elif choice == "2":
+            add_task()
 
 
 
