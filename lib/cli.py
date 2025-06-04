@@ -28,3 +28,5 @@ def main():
         elif choice == "0":
             print("👋 Bye for now!")
             break
+        else:
+            print("❗ Invalid option.")
