@@ -23,3 +23,5 @@ def main():
             complete_task()
         elif choice == "5":
             delete_task()
+        elif choice == "6":
+            upcoming_tasks()
