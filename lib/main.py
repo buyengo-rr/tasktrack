@@ -87,5 +87,17 @@ def delete_task():
             print("🛑 Deletion cancelled.")
     else:
         print("❌ Task not found.")
+def upcoming_tasks():
+    today = date.today()
+    tasks = session.query(Task).filter(Task.due_date >= today, Task.completed == False).order_by(Task.due_date, Task.priority.desc()).all()
+    if not tasks:
+        print("🌞 No upcoming tasks.")
+        return
+    rows = [[
+        t.id, t.title,
+        t.due_date.strftime("%Y-%m-%d"),
+        t.priority
+    ] for t in tasks]
+    print(tabulate(rows, headers=["ID", "Title", "Due Date", "Priority"], tablefmt="fancy_grid"))
 
 
