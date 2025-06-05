@@ -12,4 +12,7 @@ class Task(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     completed = Column(Boolean, default=False)
+engine = create_engine("sqlite:///tasks.db", echo=False, future=True)
+Session = sessionmaker(bind=engine)
+session = Session()
 
