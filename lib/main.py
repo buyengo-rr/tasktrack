@@ -85,3 +85,22 @@ def delete_task():
         print("🧹 Task deleted.")
     else:
         print("❌ Task not found.")
+def upcoming_tasks():
+    today = date.today()
+    tasks = session.query(Task).filter(Task.due_date >= today, Task.completed == False).order_by(Task.due_date).all()
+    if not tasks:
+        print("🌞 No upcoming tasks.")
+        return
+    rows = []
+    for t in tasks:
+        days_left = (t.due_date - today).days
+        emoji = "🔴" if t.priority == "High" else "🟡" if t.priority == "Medium" else "🟢"
+        rows.append([
+            t.id,
+            emoji + " " + t.title,
+            t.due_date,
+            t.priority,
+            t.tags,
+            f"{days_left} days"
+        ])
+    print(tabulate(rows, headers=["ID", "Title", "Due Date", "Priority", "Tags", "Time Left"], tablefmt="fancy_grid"))
