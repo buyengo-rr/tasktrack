@@ -76,3 +76,12 @@ def complete_task():
         print("🎉 Task completed!")
     else:
         print("❌ Task not found.")
+def delete_task():
+    task_id = input("🗑️ Delete - Task ID: ")
+    task = session.query(Task).filter_by(id=task_id).first()
+    if task:
+        session.delete(task)
+        session.commit()
+        print("🧹 Task deleted.")
+    else:
+        print("❌ Task not found.")
