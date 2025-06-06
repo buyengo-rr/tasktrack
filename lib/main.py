@@ -67,3 +67,12 @@ def view_task():
         print(f"✅ Completed: {'Yes' if task.completed else 'No'}\n")
     else:
         print("❌ Task not found.")
+def complete_task():
+    task_id = input("✅ Mark complete - Task ID: ")
+    task = session.query(Task).filter_by(id=task_id).first()
+    if task:
+        task.completed = True
+        session.commit()
+        print("🎉 Task completed!")
+    else:
+        print("❌ Task not found.")
