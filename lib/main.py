@@ -54,3 +54,16 @@ def add_task():
     session.add(task)
     session.commit()
     print("🎯 Task added!")
+def view_task():
+    task_id = input("🔍 Task ID: ")
+    task = session.query(Task).filter_by(id=task_id).first()
+    if task:
+        print(f"\n📌 {task.title}")
+        print(f"🧾 {task.description}")
+        print(f"📅 Due: {task.due_date}")
+        print(f"⚡ Priority: {task.priority}")
+        print(f"🏷️ Tags: {task.tags}")
+        print(f"🗒️ Notes: {task.notes}")
+        print(f"✅ Completed: {'Yes' if task.completed else 'No'}\n")
+    else:
+        print("❌ Task not found.")
